@@ -33,5 +33,14 @@ public class StringUtilsTest {
 	assertArrayEquals(new String[] { "a", "b,b\"", "c" },
                 StringUtils.splitCSV("a,\"b,b\"\"\",c"));    
     }
+    
+    @Test
+    public void testDeLeet()
+    {
+    assertEquals("e", StringUtils.deLeet("3"));
+    assertEquals("leet", StringUtils.deLeet("133+"));
+    assertEquals("eat banana", StringUtils.deLeet("3@+ |3@|\\|@|\\|@"));
+    assertEquals("hello",StringUtils.deLeet("h3110"));
+    }
 
 }

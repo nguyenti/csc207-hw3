@@ -67,7 +67,7 @@ public class StringUtils {
 		return array;
 	}// splitCSV
 
-	public String deLeet(String hackerType) {
+	public static String deLeet(String hackerType) {
 		String[][] things = { { "|\\|", "n" }, { "|3", "b" }, { "3", "e" },
 				{ "+", "t" }, { "@", "a" }, { "1", "l" }, { "0", "o" } };
 		for (String[] pair : things) {
