@@ -30,7 +30,7 @@ public class StringUtils {
 	ArrayList<String> all = new ArrayList<String>();
 	char separator = ',';
 	boolean inQuotes = false;
-
+	
 	// Iterate through charArray
 	for (int i = 0; i < charArray.length; i++) {
 	    // If the character at [i] is '"'...
@@ -72,8 +72,17 @@ public class StringUtils {
 	if (!current.equals("")) {
 	    all.add(current);
 	}
-
 	String[] array = all.toArray(new String[all.size()]);
 	return array;
     }// splitCSV
+
+    public static String deLeet(String hackerType) {
+	String[][] things = { { "|\\|", "n" }, { "|3", "b" }, { "3", "e" },
+		{ "+", "t" }, { "@", "a" }, { "1", "l" }, { "0", "o" } };
+	for (String[] pair : things) {
+	    hackerType = hackerType.replace(pair[0], pair[1]);
+	}
+	return hackerType;
+    }
+
 }
