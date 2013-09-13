@@ -31,34 +31,44 @@ public class StringUtils {
 	char separator = ',';
 	boolean inQuotes = false;
 
+	// Iterate through charArray
 	for (int i = 0; i < charArray.length; i++) {
+	    // If the character at [i] is '"'...
 	    if (charArray[i] == '"') {
+		// If it is a double-quote, then treat it as '"' and move on
 		if (charArray.length > i + 1 && charArray[i + 1] == '"') {
 		    current = current + '"';
 		    i += 1;
-		} else /* next character != '"' */{
+		} else {
+		    // If a quote was already established, end it
 		    if (inQuotes) {
 			inQuotes = false;
-		    } else /* !inQuotes */{
+		    } else {
+			// If there is another quote character later, start a
+			// quote. Otherwise, ignore it.
 			for (int j = i + 1; j < charArray.length; j++) {
-			    if (charArray[j] == '"') {
+			    if (charArray[j] == '"'
+				    && (charArray.length <= j + 1 || charArray[j + 1] != '"')) {
 				inQuotes = true;
 			    }
 			}
 		    }
 		}
-	    } else /* charArray[i] != '"' */{
+	    } else {
+		// If the character at [i] is the separator (and not within
+		// quotes) then separate the strings
 		if (charArray[i] == separator && !inQuotes) {
-		    if (!current.equals("")) {
-			all.add(current);
-		    }
+		    all.add(current);
 		    current = "";
-		} else /* charArray[i] != '"' or ',' */{
+		} else {
+		    // If the character at [i] is not a special character, add
+		    // it to the current string
 		    current = current + charArray[i];
 		}
 	    }
 	}
 
+	// Add the final string
 	if (!current.equals("")) {
 	    all.add(current);
 	}
