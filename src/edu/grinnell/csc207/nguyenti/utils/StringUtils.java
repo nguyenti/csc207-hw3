@@ -4,25 +4,21 @@ import java.util.ArrayList;
 
 public class StringUtils {
 
-    public static String[] SplitAt(String str, char c) {
+    public static String[] splitAt(String str, char c) {
 	char[] charArray = str.toCharArray();
 	String current = "";
 	ArrayList<String> all = new ArrayList<String>();
 
-	for (int i = 0; i <= charArray.length; i++) {
+	for (int i = 0; i < charArray.length; i++) {
 	    if (charArray[i] != c) {
 		current = current + charArray[i];
 	    } else {
-		if (!current.equals("")) {
-		    all.add(current);
-		}
+		all.add(current);
 		current = "";
 	    }
 	}
 
-	if (!current.equals("")) {
-	    all.add(current);
-	}
+	all.add(current);
 
 	String[] array = all.toArray(new String[all.size()]);
 	return array;
@@ -33,14 +29,34 @@ public class StringUtils {
 	String current = "";
 	ArrayList<String> all = new ArrayList<String>();
 	char separator = ',';
-	
+	boolean inQuotes = false;
+
 	for (int i = 0; i < charArray.length; i++) {
 	    if (charArray[i] == '"') {
-		if (charArray[i] == '"' && ){ //&& !current.equals("")) {
-		    all.add(current);
-		current = "";
+		if (charArray.length > i + 1 && charArray[i + 1] == '"') {
+		    current = current + '"';
+		    i += 1;
+		} else /* next character != '"' */{
+		    if (inQuotes) {
+			inQuotes = false;
+		    } else /* !inQuotes */{
+			for (int j = i + 1; j < charArray.length; j++) {
+			    if (charArray[j] == '"') {
+				inQuotes = true;
+			    }
+			}
+		    }
 		}
-	    } else 
+	    } else /* charArray[i] != '"' */{
+		if (charArray[i] == separator && !inQuotes) {
+		    if (!current.equals("")) {
+			all.add(current);
+		    }
+		    current = "";
+		} else /* charArray[i] != '"' or ',' */{
+		    current = current + charArray[i];
+		}
+	    }
 	}
 
 	if (!current.equals("")) {
