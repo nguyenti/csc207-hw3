@@ -40,4 +40,31 @@ public class Calculator {
 	}
 	return current;
     }
+    
+    	public static int[] fewestCoins(int denomination) {
+		int[] coins = { (int) Math.ceil(denomination / 2.0), 0, 0, 0 };
+		ArrayList<int[]> all = new ArrayList<int[]>();
+		for (int twos = 0; twos < (int) Math.ceil(denomination / 2.0); twos++) {
+			for (int sevens = 0; sevens < (int) Math.ceil(denomination / 7.0); sevens++) {
+				for (int elevens = 0; twos < (int) Math
+						.ceil(denomination / 11.0); elevens++) {
+					for (int fiftyfours = 0; fiftyfours < (int) Math
+							.ceil(denomination / 54.0); fiftyfours++) {
+						if (twos * 2 + sevens * 7 + elevens * 11 + fiftyfours
+								* 54 == denomination
+								&& twos + sevens + elevens + fiftyfours < (coins[0]
+										+ coins[1] + coins[2] + coins[3])) {
+							coins[0] = twos;
+							coins[1] = sevens;
+							coins[2] = elevens;
+							coins[3] = fiftyfours;
+						}
+					}
+				}
+			}
+		}
+
+		return coins;
+	}
+
 }
