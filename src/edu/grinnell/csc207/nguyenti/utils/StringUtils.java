@@ -4,16 +4,6 @@ import java.util.ArrayList;
 
 public class StringUtils {
 
-	public static void main(String args[]) {
-		String[] ary = StringUtils.splitCSV("a,\"b,b\"\",c");
-		System.out.print("{ ");
-		for (int i = 0; i < ary.length; i++) {
-			System.out.print(ary[i]);
-			System.out.print(" ; ");
-		}
-		System.out.println("}");
-	}
-
 	public static String[] splitAt(String str, char c) {
 		char[] charArray = str.toCharArray();
 		String current = "";
