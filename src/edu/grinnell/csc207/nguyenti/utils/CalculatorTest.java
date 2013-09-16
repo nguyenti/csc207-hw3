@@ -28,12 +28,16 @@ public class CalculatorTest {
 	int[] arrayThree = {1, 0, 0, 0};
 	int[] arrayFour = {0, 0, 0, 0};
 	int[] arrayFive = {0, 2, 0, 0};
+	int[] arraySix = {1, 1, 1, 0};
+	int[] arraySeven = {0, 4, 0, 0};
 	
 	assertArrayEquals("two denominations", arrayOne, Calculator.fewestCoins(17));
 	assertArrayEquals("one of each", arrayTwo, Calculator.fewestCoins(74));
 	assertArrayEquals("one denomination", arrayThree, Calculator.fewestCoins(2));
 	assertArrayEquals("0", arrayFour, Calculator.fewestCoins(0));
 	assertArrayEquals("two of a denomination", arrayFive, Calculator.fewestCoins(14));
+	assertArrayEquals("0", arraySix, Calculator.fewestCoins(20));
+	assertArrayEquals("two of a denomination", arraySeven, Calculator.fewestCoins(28));
     }
 
 }
